@@ -1,0 +1,7 @@
+CREATE TABLE Deleted_Accounts
+(
+	Account_No	NUMBER(16)	Primary Key
+	Customer_ID	NUMBER(8)	Not Null
+	Account_Type	CHAR(7)	Not Null
+	Balance	NUMBER(10)	Not Null Check(Balance>=5000)
+);

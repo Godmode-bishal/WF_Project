@@ -1,0 +1,18 @@
+CREATE TABLE Customer
+(
+	Customer_ID 		NUMBER(8)		PRIMARY KEY,
+	Title 				CHAR(3)			NOT NULL,
+	First_Name 			VARCHAR2(30) 	NOT NULL,
+	Middle_Name 		VARCHAR2(30),
+	Last_Name 			VARCHAR2(30) 	NOT NULL,
+	Father_Name 		VARCHAR2(90) 	NOT NULL,
+	Permanent_Address 	VARCHAR2(100) 	NOT NULL,
+	Mailing_Address 	VARCHAR2(100) 	NOT NULL,
+	Email 				VARCHAR2(20)	NOT NULL,
+	DOB 				DATE 			NOT NULL,
+	MOB_NO 				NUMBER(10) 		NOT NULL,
+	Gender				CHAR(1)			NOT NULL,
+	SSN					NUMBER(9)		NOT NULL UNIQUE
+);
+
+

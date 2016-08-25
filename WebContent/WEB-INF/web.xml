@@ -19,4 +19,14 @@
     <servlet-name>BankUserLoginServlet</servlet-name>
     <url-pattern>/BULoginServlet</url-pattern>
   </servlet-mapping>
+	<servlet>
+    <description></description>
+    <display-name>LogoutServlet</display-name>
+    <servlet-name>LogoutServlet</servlet-name>
+    <servlet-class>com.project.LogoutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogoutServlet</servlet-name>
+    <url-pattern>/LServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -11,11 +11,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class BankUserLoginServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException 
 	{
 		response.setContentType("text/html");
+		 //request.getRequestDispatcher("bank_user.html").include(request, response); 
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		PrintWriter out=response.getWriter();
@@ -32,8 +34,14 @@ public class BankUserLoginServlet extends HttpServlet{
 		while(rs.next()){
 			if((username.equals(rs.getString("employee_id")))&&(password.equals(rs.getString("emp_password"))))
 			{
+				HttpSession session=request.getSession();  
+		        session.setAttribute("UID",username);  
 				response.sendRedirect("options.html");
 				break;
+			}
+			else
+			{
+				out.println("Invalid Employee ID or password");
 			}
 			rs.close();
 			stmt.close();

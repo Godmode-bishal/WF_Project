@@ -1,6 +1,6 @@
 CREATE TABLE Customer
 (
-	Customer_ID 		NUMBER(8)		PRIMARY KEY,
+	Customer_ID 		NUMBER(8)		PRIMARY KEY autoincrement,
 	Title 				CHAR(3)			NOT NULL,
 	First_Name 			VARCHAR2(30) 	NOT NULL,
 	Middle_Name 		VARCHAR2(30),

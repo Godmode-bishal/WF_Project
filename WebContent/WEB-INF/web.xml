@@ -19,7 +19,7 @@
     <servlet-name>BankUserLoginServlet</servlet-name>
     <url-pattern>/BULoginServlet</url-pattern>
   </servlet-mapping>
-	<servlet>
+  <servlet>
     <description></description>
     <display-name>LogoutServlet</display-name>
     <servlet-name>LogoutServlet</servlet-name>
@@ -28,5 +28,75 @@
   <servlet-mapping>
     <servlet-name>LogoutServlet</servlet-name>
     <url-pattern>/LServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RegisterServlet</display-name>
+    <servlet-name>RegisterServlet</servlet-name>
+    <servlet-class>com.project.RegisterServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RegisterServlet</servlet-name>
+    <url-pattern>/RegisterServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ModifyServlet</display-name>
+    <servlet-name>ModifyServlet</servlet-name>
+    <servlet-class>com.project.ModifyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModifyServlet</servlet-name>
+    <url-pattern>/custmodify</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CloseAccServlet</display-name>
+    <servlet-name>CloseAccServlet</servlet-name>
+    <servlet-class>com.project.CloseAccServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CloseAccServlet</servlet-name>
+    <url-pattern>/accclose</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteCustServlet</display-name>
+    <servlet-name>DeleteCustServlet</servlet-name>
+    <servlet-class>com.project.DeleteCustServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteCustServlet</servlet-name>
+    <url-pattern>/delcust</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddAccServlet</display-name>
+    <servlet-name>AddAccServlet</servlet-name>
+    <servlet-class>com.project.AddAccServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddAccServlet</servlet-name>
+    <url-pattern>/accadd</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddConfirmServlet</display-name>
+    <servlet-name>AddConfirmServlet</servlet-name>
+    <servlet-class>com.project.AddConfirmServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddConfirmServlet</servlet-name>
+    <url-pattern>/addconfirm</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CustomerUpdateServlet</display-name>
+    <servlet-name>CustomerUpdateServlet</servlet-name>
+    <servlet-class>com.project.CustomerUpdateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CustomerUpdateServlet</servlet-name>
+    <url-pattern>/UpdateServlet</url-pattern>
   </servlet-mapping>
 </web-app>

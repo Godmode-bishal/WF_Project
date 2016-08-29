@@ -1,5 +1,4 @@
 package com.project;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -14,10 +13,11 @@ public class LogoutServlet extends HttpServlet {
 	 {  
 		 response.setContentType("text/html");  
 		 PrintWriter out=response.getWriter();  
-		 request.getRequestDispatcher("bank_user.html").include(request, response);  
-		 HttpSession session=request.getSession();  
+		 request.getRequestDispatcher("index.jsp").include(request, response);  
+		 HttpSession session=request.getSession(false);  
 		 session.invalidate();  
 		 out.close();  
+		 
 	 }  
 }  
 

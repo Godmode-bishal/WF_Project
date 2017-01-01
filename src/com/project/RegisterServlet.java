@@ -39,9 +39,6 @@ public class RegisterServlet extends HttpServlet {
 			String mailAddress = request.getParameter("mailingAddress");
 			String email = request.getParameter("email");
 			String dob = request.getParameter("dob");
-			String S1 = dob.substring(0,2);
-			String S2 = dob.substring(3,5);
-			dob=S2+"/"+S1+dob.substring(5);
 			String mobNo = request.getParameter("mobileNo");
 			String gender = request.getParameter("gender");
 			String ssn = request.getParameter("ssn");
@@ -75,20 +72,13 @@ public class RegisterServlet extends HttpServlet {
 				preparedStatement1.setLong(2, Long.parseLong(balance));
 				conn.commit();
 				preparedStatement1.executeQuery();
+				conn.commit();
 				preparedStatement.close();
 				preparedStatement1.close();
-				conn.commit();
-				ResultSet rs = stmt.executeQuery("Select customer_id from customer where ssn ="+ssn);
-				while(rs.next()){
-				out.print("<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js\"></script> <script src=\"http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script><style>h1 { border: 2px solid black; border-radius: 5px;} </style><h1>Registration Successful! Customer ID: "+ rs.getString(1)+"</h1><form action=\"options.jsp\"><input type=\"submit\" value=\"Back\" class=\"btn btn-success\"/></form>");
-				}
-			
-				conn.commit();
-				rs.close();
 				stmt.close();
 				conn.close();
 				
-				//response.sendRedirect("options.jsp");
+				response.sendRedirect("options.jsp");
 			}
 
 			catch(Exception e)

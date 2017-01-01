@@ -12,10 +12,6 @@
 
 <title>Modify Page</title>
     <link rel="stylesheet" href="css/reset.css">
-    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    	<link href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
-		<link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    	<link href="css/bootstrap-social.css" rel="stylesheet">
 
     <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
 <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
@@ -33,7 +29,7 @@
 </script>
   <script>
   $( function() {
-    $( "#datepicker" ).datepicker({dateFormat: 'mm/dd/yy'});
+    $( "#datepicker" ).datepicker({dateFormat: 'dd/mm/yy'});
   } );
   </script>
 <script type="text/javascript">
@@ -65,6 +61,51 @@ if(balance<5000)
 document.getElementById("error10").innerHTML="Starting balance must be atleast 5000!!!";
 return false;
 }
+if(firstName=="")
+{
+	document.getElementById("error1").innerHTML="First Name is mandatory!!!";
+	return false;
+}
+if(lastName=="")
+{
+	document.getElementById("error2").innerHTML="Last Name is mandatory!!!";
+	return false;
+}
+if(relation=="")
+{
+	document.getElementById("error3").innerHTML="Father's or Husband's name is mandatory!!!";
+	return false;
+}
+if(permanentAddress=="")
+{
+	document.getElementById("error4").innerHTML="Permanent Address is mandatory!!!";
+	return false;
+}
+if(mailingAddress=="")
+{
+	document.getElementById("error5").innerHTML="Mailing Address is mandatory!!!";
+	return false;
+}
+if(email=="")
+{
+	document.getElementById("error6").innerHTML="Email is mandatory!!!";
+	return false;
+}
+if(dob=="")
+{
+	document.getElementById("error7").innerHTML="Date of birth is mandatory!!!";
+	return false;
+}
+if(mobno.value.length!=10)
+{
+	document.getElementById("error8").innerHTML="Mobile Number must be exactly of 10 digits!!!";
+	return false;
+}
+if(ssn.value.length!=9)
+{
+	document.getElementById("error9").innerHTML="SSN must be of exactly 9 digits!!!";
+	return false;
+}
 }  
 </script>
 </head>
@@ -82,15 +123,11 @@ Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:
 		Statement stmt = conn.createStatement();
 		ResultSet rs = stmt.executeQuery("select * from customer where customer_id=" + custid );
 while(rs.next()){
-	String S = rs.getString("dob").substring(0,10).replaceAll("-","/");
-	String S1 = S.substring(0,4);
-	String S2 = S.substring(5,7);
-	S = S2+"/"+S.substring(8)+"/"+S1;
-	
+				
 %>
 
 
-<body oncontextmenu="return false">
+<body>
 <a href="options.jsp">Back to homepage</a>
 	<a href="LServlet">Logout</a><br><br><br><br>
 	<h1>Customer Modification Form</h1>
@@ -149,11 +186,11 @@ while(rs.next()){
 				<tr>
 					<td>Date of Birth: <span><font size="3" color="green">*</font></span></td>
 					
-					<td><input type="text" name="dob" id="datepicker" value="<%=S%>"/></td>
+					<td><input type="text" name="dob" id="datepicker" value="<%=rs.getString("dob")%>"/></td>
 				</tr>
 				<tr>
 					<td>Mobile Number: <span><font size="3" color="green">*</font></span></td>
-					<td><input type="number" name="mobileNo" max="9999999999" min="1000000000" value="<%=rs.getString("mob_no")%>" required/></td>
+					<td><input type="number" name="mobileNo" maxlength="10" min="1000000000" value="<%=rs.getString("mob_no")%>" required/></td>
 				</tr>
 				<tr>
 					<td>Gender: <span><font size="3" color="green">*</font></span></td>
@@ -167,11 +204,11 @@ while(rs.next()){
 				</tr>
 				<tr>
 					<td>SSN: <span><font size="3" color="green">*</font></span></td>
-					<td><input type="number" max="999999999" min="100000000" name="ssn" value="<%=rs.getString("ssn")%>" required/></td>
+					<td><input type="number" maxlength="9" min="100000000" name="ssn" value="<%=rs.getString("ssn")%>" required/></td>
 				</tr>
 			</table>
 			<input name="custid" type="hidden" value="<%=custid%>"> 
-			<input type="submit" value="Save" role="button" class="btn btn-primary"/>
+			<input type="submit" value="Save" />
 		</form>
 	</div>
 	</body>

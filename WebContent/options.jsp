@@ -32,7 +32,7 @@
   window.onunload=function(){null};
 </script>
 </head>
-<body oncontextmenu="return false">
+<body>
 <% if(session.getAttribute("UID")!=null){ 
 //Cookie c = new Cookie("a","0");
 %>

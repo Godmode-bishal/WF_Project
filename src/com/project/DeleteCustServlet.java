@@ -34,7 +34,7 @@ public class DeleteCustServlet extends HttpServlet{
 			stmt.executeUpdate("INSERT INTO deleted_accounts(account_no,customer_id,account_type,balance,date_of_deletion) SELECT account_no,customer_id,account_type,balance,date_of_creation FROM accounts where customer_id="+custId);
 			stmt.executeUpdate("delete from accounts where customer_id="+custId);
 			stmt.executeUpdate("DELETE FROM customer WHERE customer_id="+custId);
-			out.println("<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js\"></script> <script src=\"http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script><style>h1 { border: 2px solid black; border-radius: 5px;} </style><h1>Customer profile successfully deleted.</h1><form action=\"options.jsp\"><input type=\"submit\" value=\"Back\" class=\"btn btn-success\"/></form>");
+			out.println("<h1>Customer profile successfully deleted.</h1><form action=\"options.jsp\"><input type=\"submit\" value=\"Back\"/></form>");
 			
 			conn.commit();
 			stmt.close();

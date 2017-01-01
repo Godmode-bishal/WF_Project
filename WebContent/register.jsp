@@ -7,10 +7,6 @@
 
 <title>Registration Page</title>
     <link rel="stylesheet" href="css/reset.css">
-    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    	<link href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
-		<link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    	<link href="css/bootstrap-social.css" rel="stylesheet">
 
     <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
 <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
@@ -28,7 +24,7 @@
 </script>
   <script>
   $( function() {
-    $( "#datepicker" ).datepicker({dateFormat: 'mm/dd/yy'});
+    $( "#datepicker" ).datepicker({dateFormat: 'dd/mm/yy'});
   } );
   </script>
 <script type="text/javascript">
@@ -48,7 +44,6 @@ var mobno = document.registerForm.mobileNo.value;
 var gender = document.registerForm.gender.value;
 var ssn = document.registerForm.ssn.value;
 var balance = document.registerForm.balance.value;
-//alert(mobno.length);
 
 /* 
 if(customerId.length>8){
@@ -61,7 +56,51 @@ if(balance<5000)
 document.getElementById("error10").innerHTML="Starting balance must be atleast 5000!!!";
 return false;
 }
-
+if(firstName=="")
+{
+	document.getElementById("error1").innerHTML="First Name is mandatory!!!";
+	return false;
+}
+if(lastName=="")
+{
+	document.getElementById("error2").innerHTML="Last Name is mandatory!!!";
+	return false;
+}
+if(relation=="")
+{
+	document.getElementById("error3").innerHTML="Father's or Husband's name is mandatory!!!";
+	return false;
+}
+if(permanentAddress=="")
+{
+	document.getElementById("error4").innerHTML="Permanent Address is mandatory!!!";
+	return false;
+}
+if(mailingAddress=="")
+{
+	document.getElementById("error5").innerHTML="Mailing Address is mandatory!!!";
+	return false;
+}
+if(email=="")
+{
+	document.getElementById("error6").innerHTML="Email is mandatory!!!";
+	return false;
+}
+if(dob=="")
+{
+	document.getElementById("error7").innerHTML="Date of birth is mandatory!!!";
+	return false;
+}
+if(mobno.value.length!=10)
+{
+	document.getElementById("error8").innerHTML="Mobile Number must be exactly of 10 digits!!!";
+	return false;
+}
+if(ssn.value.length!=9)
+{
+	document.getElementById("error9").innerHTML="SSN must be of exactly 9 digits!!!";
+	return false;
+}
 }  
 </script>
 </head>
@@ -76,7 +115,7 @@ div.ex {
 
 
 
-<body oncontextmenu="return false">
+<body>
 
 	<h1>Customer Registration Form</h1>
 	<a href="options.jsp">Back to homepage</a>
@@ -98,9 +137,9 @@ div.ex {
 					<td>
 					<select name="title" required>
 					<option value=""></option>
-					<option value="Mr">Mr</option>
-					<option value="Ms">Ms</option>
-					<option value="Mrs">Mrs</option>
+					<option value="mr">Mr</option>
+					<option value="ms">Ms</option>
+					<option value="mrs">Mrs</option>
 					</select>
 					</td>
 				</tr>
@@ -129,17 +168,17 @@ div.ex {
 					<td><input type="text" name="mailingAddress" required><span id="error5"></span></td>
 				</tr>
 				<tr>
-					<td>Email: <span><font size="3" color="green">*</font></span></td>`
+					<td>Email: <span><font size="3" color="green">*</font></span></td>
 					<td><input type="email" name="email" required><span id="error6"></span></td>
 				</tr>
 				<tr>
 					<td>Date of Birth: <span><font size="3" color="green">*</font></span></td>
 					
-					<td><input type="text" name="dob" id="datepicker" required><span id="error7"></span></td>
+					<td><input type="text" name="dob" id="datepicker"><span id="error7"></span></td>
 				</tr>
 				<tr>
 					<td>Mobile Number: <span><font size="3" color="green">*</font></span></td>
-					<td><input min="1000000000" max="9999999999" type="number" pattern=".{10}" name="mobileNo" required></td>
+					<td><input min="1000000000" type="number" maxlength="10" name="mobileNo" required><span id="error8"></span></td>
 				</tr>
 				<tr>
 					<td>Gender: <span><font size="3" color="green">*</font></span></td>
@@ -154,14 +193,14 @@ div.ex {
 				</tr>
 				<tr>
 					<td>SSN: <span><font size="3" color="green">*</font></span></td>
-					<td><input min="100000000" max="999999999" type="number" maxlength="9" name="ssn" required></td>
+					<td><input min="100000000" type="number" maxlength="9" name="ssn" required><span id="error9"></span></td>
 				</tr>
 				<tr>
 					<td>Balance: <span><font size="3" color="green">*</font></span></td>
 					<td><input type="number" name="balance" required><span id="error10"></span></td>
 				</tr>
 			</table>
-			<input type="submit" value="Register" class="btn btn-primary" role="button" />
+			<input type="submit" value="register" />
 		</form>
 	</div>
 	 

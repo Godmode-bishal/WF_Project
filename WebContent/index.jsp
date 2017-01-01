@@ -17,15 +17,9 @@
   setTimeout("preventBack()", 0);
   window.onunload=function(){null};
 </script>
-<script type="text/javascript">
-function contact(){
-	
-	alert("Contact system admin!")
-}
-</script>
   </head>
 
-  <body oncontextmenu="return false">
+  <body>
 
     
 <!-- Mixins-->
@@ -52,7 +46,7 @@ function contact(){
       <p>${message}</p>
         <button type="submit" value="Login"><span>Login</span></button>
       </div>
-      <div class="footer"><a onclick="contact()">Forgot your password?</a></div>
+      <div class="footer" style="font-color: solid-black;">Contact System admin if you have forgotten your password</div>
     </form>
   </div>
   <div class="card alt">

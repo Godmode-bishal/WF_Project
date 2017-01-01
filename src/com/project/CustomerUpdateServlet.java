@@ -35,18 +35,16 @@ public class CustomerUpdateServlet extends HttpServlet{
 				String mailAddress = request.getParameter("mailingAddress");
 				String email = request.getParameter("email");
 				String dob = request.getParameter("dob");
-				String S1 = dob.substring(0,2);
-				String S2 = dob.substring(3,5);
-				dob=S2+"/"+S1+dob.substring(5);
+				
 				String mobNo = request.getParameter("mobileNo");
 				String gender = request.getParameter("gender");
 				String ssn = request.getParameter("ssn");
 				//System.out.println("Hello");
 				try
 				{
-					/*SimpleDateFormat df = new SimpleDateFormat("YYYY-MM-DD");
+					SimpleDateFormat df = new SimpleDateFormat("YYYY-MM-DD");
 				    java.util.Date d = df.parse(dob);
-					Date date = new Date(d.getTime());*/
+					Date date = new Date(d.getTime());
 					//System.out.println("hi");
 					Class.forName("oracle.jdbc.OracleDriver");
 					Connection conn= DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "ON_BK_SYS","wellsfargo");
@@ -65,13 +63,13 @@ public class CustomerUpdateServlet extends HttpServlet{
 					preparedStatement.setString(6, perAddress);
 					preparedStatement.setString(7, mailAddress);
 					preparedStatement.setString(8, email);
-					preparedStatement.setString(9, dob);
+					preparedStatement.setDate(9, date);
 					preparedStatement.setLong(10, Long.parseLong(mobNo));
 					preparedStatement.setString(11, gender);
 					preparedStatement.setLong(12, Long.parseLong(ssn));
 					conn.commit();
 					preparedStatement.executeUpdate();
-					
+					//System.out.println("yo");
 					conn.commit();
 					preparedStatement.close();
 					stmt.close();

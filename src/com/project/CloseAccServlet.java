@@ -51,8 +51,7 @@ public class CloseAccServlet extends HttpServlet {
 				}
 			}
 
-			out.println(
-					"<h1>Account successfully closed.</h1><form action=\"options.jsp\"><input type=\"submit\" value=\"Back\"/></form>");
+			out.println("<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js\"></script><script src=\"http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script><style>h1 { border: 2px solid black; border-radius: 5px;} </style> <h1>Account successfully closed.</h1><form action=\"options.jsp\"><input type=\"submit\" value=\"Back\" class=\"btn btn-success\"/></form>");
 
 			conn.commit();
 			stmt.close();

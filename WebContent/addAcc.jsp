@@ -1,7 +1,6 @@
 <%@ page import="java.sql.*"%>
 <%
 	Class.forName("oracle.jdbc.OracleDriver");
-	int sav=0,cur=0,sal=0;
 %>
 <html>
 <head>
@@ -13,6 +12,8 @@
 <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
 
         <link rel="stylesheet" href="css/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <% if(session.getAttribute("UID")!=null){ %>
 <script>
@@ -22,7 +23,7 @@
 </script>
 
 </head>
-<body>
+<body oncontextmenu="return false">
 	<a href="options.jsp">Back to homepage</a>
 	<a href="LServlet">Logout</a><br><br><br><br>
 	<h4>Add Account</h4>
@@ -35,6 +36,7 @@
 			<tr><td>
 				<label for="account">Account: </label> <select name="account">
 				<% 
+				int sav=0,cur=0,sal=0;
 				String custid=request.getParameter("custid");
 				Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "ON_BK_SYS", "wellsfargo");
 				Statement stmt = conn.createStatement();
@@ -66,17 +68,23 @@
 				
 			<tr>
 					<td>Balance: </td>
-					<td><input type="number" min="50000" name="balance" required><span id="error1"></span></td>
+					<td><input type="number" min="5000" name="balance" required><span id="error1"></span></td>
 				</tr>
 			 <tr>
-				<td colspan='2'><input type="submit" value="Submit"></td>
+				<td colspan='2'><input type="submit" value="Submit" class="btn btn-success"></td>
 			</tr>
 		</table>
 		
 	</form>
 	<hr>
 </body>
-<%}
+<%
+conn.commit();
+rs.close();
+stmt.close();
+conn.close();}
+
+
 else
 {
 	response.sendError(401);

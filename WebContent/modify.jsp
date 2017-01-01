@@ -9,12 +9,19 @@
 <head>
 
 <title>Edit Customer</title>
+
     <link rel="stylesheet" href="css/reset.css">
 
     <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
 <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
 
         <link rel="stylesheet" href="css/style.css">
+        <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
 <script type="text/javascript">
 	function modtable() {
@@ -66,10 +73,16 @@
 		
 	}
 </script> -->
+<script> function sure(){
+	if(confirm("Are you sure?")== true)
+		return true;
+	else
+		return false;
+}</script>
 
 </head>
 
-<body>
+<body oncontextmenu="return false">
 	<a href="options.jsp">Back to homepage</a>
 	<a href="LServlet">Logout</a>
 	<br>
@@ -88,13 +101,14 @@
 						id="error"> </span></font></td>
 			</tr>
 			<tr>
-				<td><input type="submit" value="Submit" onclick="modtable();" /></td>
+				<td><input type="submit" value="Submit" onclick="modtable();" class="btn btn-success"/></td>
 			</tr>
 		</table>
 	</form>
 	<%
 		//String custid ="10"; 
 		String custid=request.getParameter("custid");
+		String a="";
 		
 		if((custid!=""))
 		{
@@ -105,18 +119,24 @@
 		while (rs.next()) {
 			int rc = rs.getInt("rowcount");
 			if (rc == 0 ) {
-				out.print("<div name=\"myDiv4\" ><span><font size=\"3\" color=\"red\"><h3>Enter valid Customer ID!<h1></font></span></div>");
+				out.print("<style>h3 { border: 2px solid black; border-radius: 5px;} </style><div name=\"myDiv4\" ><span><font size=\"3\" color=\"red\"><h3>Enter valid Customer ID!</h3></font></span></div>");
 			} 
 		} 
 			ResultSet rs1 = stmt.executeQuery("select * from customer where  CUSTOMER_ID=" +custid);
 		while (rs1.next()) {
 			cid = rs1.getString(1);
+			if(rs1.getString(4)==null){
+				 a = "";
+			}else{
+				a=rs1.getString(4);
+			}
 	%>
 
 	<hr>
 
 	<div id='myDiv1'>
-		<table border="1">
+		<table class="table">
+		<thread>
 			<tr>
 				<td>Customer ID</td>
 				<td>Title</td>
@@ -133,11 +153,13 @@
 				<td>SSN</td>
 				<td>Modify</td>
 			</tr>
-			<tr>
+			</thread>
+			<tbody>
+			<tr class="danger">
 				<td><%=rs1.getString(1)%></td>
 				<td><%=rs1.getString(2)%></td>
 				<td><%=rs1.getString(3)%></td>
-				<td><%=rs1.getString(4)%></td>
+				<td><%=a%></td>
 				<td><%=rs1.getString(5)%></td>
 				<td><%=rs1.getString(6)%></td>
 				<td><%=rs1.getString(7)%></td>
@@ -149,22 +171,25 @@
 				<td><%=rs1.getString(13)%></td>
 				<td><form action="custmodify" method="post">
 						<input name="custid" type="hidden" value="<%=cid%>"> <input
-							type="submit" Value="Modify" />
+							type="submit" Value="Modify" class="btn btn-success"/>
 					</form></td>
 			</tr>
+			</tbody>
 		</table>
 	</div>
 	<span style="display: block; height: 50px;"></span>
 
 
 	<div id='myDiv2'>
-		<table border="1">
+		<table class="table">
+		<thread>
 			<tr>
 				<td>Account No.</td>
 				<td>Account Type</td>
 				<td>Balance</td>
 				<td>Close</td>
 			</tr>
+			</thread>
 			<%
 				}
 				conn.commit();
@@ -172,16 +197,18 @@
 				ResultSet rs2 = stmt2.executeQuery("select * from accounts where  CUSTOMER_ID=" +custid);
 				while (rs2.next()) {
 			%>
-			<tr>
+			<tbody>
+			<tr class="success">
 				<td><%=rs2.getString(1)%></td>
 				<td><%=rs2.getString(2)%></td>
 				<td><%=rs2.getString(3)%></td>
-				<td><form action="accclose" method="post">
+				<td><form action="accclose" method="post" onsubmit=" return sure()">
 						<input name="accno" type="hidden" value="<%=rs2.getString(1)%>" />
 						<input name="custid" type="hidden" value="<%=rs2.getString(4)%>" />
-						<input type="submit" value="Close" />
+						<input type="submit" value="Close" id="clo" class="btn btn-success" />
 					</form></td>
 			</tr>
+			</tbody>
 
 			<%
 				}
@@ -195,11 +222,12 @@
 	<div name="myDiv3">
 		<form action="accadd" method="post">
 			<input name="custid" type="hidden" value="<%=rs3.getString(1)%>">
-			<input type="submit" Value="Add Account" />
+			<input type="submit" Value="Add Account" class="btn btn-primary"/>
 		</form>
-		<form action="delcust" method="post">
+		<span style="display: block; height: 20px;"></span>
+		<form action="delcust" method="post" onsubmit=" return sure()">
 			<input name="custid" type="hidden" value="<%=rs3.getString(1)%>">
-			<input type="submit" Value="Delete Customer Profile" />
+			<input type="submit" Value="Delete Customer Profile"  class="btn btn-primary"/>
 		</form>
 	</div>
 
@@ -223,7 +251,7 @@ conn.close();
 			
 		}
 }else{
-	out.print("<span><font size=\"3\" color=\"red\"><h3>Enter a Customer ID!<h1></font></span>");
+	out.print("<style>h3 { border: 2px solid black; border-radius: 5px;} </style> <span><font size=\"3\" color=\"red\"><h3>Enter a Customer ID!</h3></font></span>");
 }
 		}
 else
